@@ -1,5 +1,5 @@
 {
   "setup": ["./.superset/setup.sh"],
-  "teardown": [],
-  "run": ["npm run dev"]
+  "teardown": ["make dev-local-stop"],
+  "run": ["BUSINESSOS_HEADLESS=1 make dev-local"]
 }
