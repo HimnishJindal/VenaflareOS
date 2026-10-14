@@ -1,9 +1,19 @@
 name: E2E Tests
 
-# E2E tests are manual for now: inherited from BusinessOS, where they
-# also time out on every push (upstream main, 2026-10). Run from the Actions tab.
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - pedro-dev
+      - release/mvp-stabilization
+      - 'release/**'
+  pull_request:
+    branches:
+      - main
+      - feature/multi-agent-app-generation
+      - release/mvp-stabilization
+      - 'release/**'
+
 jobs:
   test:
     timeout-minutes: 60

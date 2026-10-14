@@ -529,11 +529,9 @@ func TestConcurrency(t *testing.T) {
 
 		for i := 0; i < concurrentUsers; i++ {
 			go func(userNum int) {
-				// Signal even when the helper fails the test (t.FailNow ends only
-				// this goroutine); otherwise the receive below blocks forever.
-				defer func() { done <- true }()
 				userID, _ := createIntTestUserWithSession(t, ctx, testDB.Pool)
 				assert.NotEmpty(t, userID)
+				done <- true
 			}(i)
 		}
 
